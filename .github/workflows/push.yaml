@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - 'main'
+
+name: Build and push to docker
+jobs:
+  deploy:
+    name: Build and Deploy app to kubernetes cluster
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: facuxfdz/hi-python:latest
