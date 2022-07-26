@@ -20,4 +20,11 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: facuxfdz/hi-python:latest
+          tags: facuxfdz/hi-python:${{ github.sha }}
+      -
+        name: Kubernetes deploy
+        uses: ThomasKliszowski/setup-kubectl@v1
+        with:
+          kube-config: ${{ secrets.KUBE_CONFIG }}
+      - run: kubectl set image --record deployment/py-deploy hi-py=hi-py:${{ github.sha }}
+        
