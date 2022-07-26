@@ -8,9 +8,11 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     html = """
-    Hello {name}
-    Hostname: {hostname}
-    """
+    Hello {name}!
+    How are you?
+    We are going to share the following personal information about you:
+    - Hostname: {hostname}
+   """
     return html.format(name=os.getenv("NAME","py-user"),hostname=socket.gethostname())
 
 if __name__ == "__main__":
