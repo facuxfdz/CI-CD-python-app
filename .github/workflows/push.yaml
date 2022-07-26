@@ -26,5 +26,5 @@ jobs:
         uses: ThomasKliszowski/setup-kubectl@v1
         with:
           kube-config: ${{ secrets.KUBE_CONFIG }}
-      - run: kubectl set image --record deployment/py-deploy hi-py=hi-python:${{ github.sha }}
+      - run: kubectl set image --record deployment/py-deploy hi-py=facuxfdz/hi-python:${{ github.sha }}
         
